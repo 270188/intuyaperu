@@ -36,7 +36,7 @@ export default function Shop() {
   const title = get("q") ? `Resultados para “${get("q")}”` : cat ? cat.label : sp.get("nuevo") === "1" ? "Novedades" : "Toda la colección";
 
   useEffect(() => {
-    document.title = `${title} · INTUYA PERÚ`;
+    document.title = `${title} · MAISON INTI`;
   }, [title]);
 
   return (

@@ -1,4 +1,4 @@
-# INTUYA PERÚ · intuyaperu.com
+# MAISON INTI · intuyaperu.com
 
 Tienda virtual de moda femenina hecha con **Vite + React + TypeScript**, lista para desplegar en Vercel.
 

@@ -16,7 +16,7 @@ export default function Reclamaciones() {
   const upd = (k: keyof R) => (e: { target: { value: string } }) => setR({ ...r, [k]: e.target.value });
 
   useEffect(() => {
-    document.title = "Libro de Reclamaciones · INTUYA PERÚ";
+    document.title = "Libro de Reclamaciones · MAISON INTI";
   }, []);
 
   function submit(e: FormEvent) {

@@ -66,7 +66,7 @@ export default function Legal() {
   const { page = "" } = useParams();
   const p = PAGES[page];
   useEffect(() => {
-    if (p) document.title = `${p.title} · INTUYA PERÚ`;
+    if (p) document.title = `${p.title} · MAISON INTI`;
   }, [p]);
   if (!p) return <NotFound />;
   return (

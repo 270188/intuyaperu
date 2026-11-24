@@ -16,7 +16,7 @@ export default function ProductPage() {
   useEffect(() => {
     setSize("");
     setMsg("");
-    if (p) document.title = `${p.name} · INTUYA PERÚ`;
+    if (p) document.title = `${p.name} · MAISON INTI`;
   }, [p]);
 
   if (!p) return <NotFound />;

@@ -1,6 +1,6 @@
 export const STORE = {
   name: "intuyaperu.com",
-  brand: "INTUYA PERÚ",
+  brand: "MAISON INTI",
   domain: "https://intuyaperu.com",
   whatsapp: "51990073634",
   whatsappDisplay: "990 073 634",

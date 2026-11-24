@@ -33,7 +33,7 @@ export default function Gracias() {
     );
 
   const resumen = [
-    `Hola Intuya Perú 👋, acabo de hacer el pedido *${order.id}*`,
+    `Hola Maison Inti 👋, acabo de hacer el pedido *${order.id}*`,
     ...order.lines.map((l) => `• ${l.name} · Talla ${l.size} · x${l.qty} · ${money(l.price * l.qty)}`),
     `Envío: ${order.envio ? money(order.envio) : "Gratis"}`,
     `*Total: ${money(order.total)}*`,

@@ -40,7 +40,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     items,
     payer: { email, name: typeof nombre === "string" ? nombre.slice(0, 80) : undefined },
     external_reference: orderId,
-    statement_descriptor: "INTUYAPERU",
+    statement_descriptor: "MAISONINTI",
     back_urls: {
       success: `${site}/gracias?mp=success`,
       failure: `${site}/gracias?mp=failure`,

@@ -1,4 +1,4 @@
-// Catálogo de Intuya Perú. PRECIOS Y TALLAS DE EJEMPLO: reemplázalos por los reales.
+// Catálogo de Maison Inti. PRECIOS Y TALLAS DE EJEMPLO: reemplázalos por los reales.
 // Cuando el catálogo crezca (miles de prendas), estos datos pasarán a la base de datos
 // y las fotos a Vercel Blob. La tienda ya pagina de a 24 y carga las fotos solo al verlas.
 

@@ -47,7 +47,7 @@ main { min-height: 70vh; }
 .nav-left, .nav-right { display: flex; gap: 22px; font-size: 12px; text-transform: uppercase; letter-spacing: .12em; }
 .nav-right { justify-content: flex-end; }
 .nav-left a:hover, .text-btn:hover { color: var(--accent); }
-.logo { font-family: var(--serif); font-size: 28px; letter-spacing: .32em; font-weight: 400; text-align: center; line-height: 1; }
+.logo { font-family: var(--serif); font-size: 26px; letter-spacing: .26em; white-space: nowrap; font-weight: 400; text-align: center; line-height: 1; }
 .logo span { display: block; font-family: var(--sans); font-size: 9px; letter-spacing: .6em; margin-top: 4px; color: var(--accent); }
 .logo.small { font-size: 22px; text-align: left; }
 .text-btn { background: none; border: 0; padding: 0; cursor: pointer; text-transform: uppercase; letter-spacing: .12em; font-size: 12px; }
@@ -222,7 +222,7 @@ details p { color: var(--muted); font-size: 14px; }
   .nav-left { display: none; }
   .nav-right .text-btn:first-child { display: none; }
   .header { grid-template-columns: 48px 1fr auto; padding: 10px 16px; }
-  .logo { font-size: 22px; letter-spacing: .26em; }
+  .logo { font-size: 18px; letter-spacing: .16em; }
   .grid { grid-template-columns: repeat(2, 1fr); gap: 22px 8px; }
   .cats { grid-template-columns: repeat(2, 1fr); }
   .hero { height: 78vh; }

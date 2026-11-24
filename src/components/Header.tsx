@@ -31,8 +31,8 @@ export default function Header() {
             <Link key={c.id} to={`/tienda?categoria=${c.id}`}>{c.label}</Link>
           ))}
         </nav>
-        <Link to="/" className="logo" aria-label="Intuya Perú, inicio">
-          INTUYA<span>PERÚ</span>
+        <Link to="/" className="logo" aria-label="Maison Inti, inicio">
+          MAISON INTI<span>PERÚ</span>
         </Link>
         <div className="nav-right">
           <button className="text-btn" onClick={() => setSearch(!search)} aria-expanded={search}>Buscar</button>
