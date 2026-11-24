@@ -2,25 +2,29 @@ import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
 import { CATEGORIES, PRODUCTS } from "../lib/products";
 
-const catImage: Record<string, string> = {
-  blusas: "/productos/blusa-guipur-camel-sm.webp",
-  blazers: "/productos/blazer-beige-sm.webp",
-  conjuntos: "/productos/conjunto-tweed-sm.webp",
-  pantalones: "/productos/jean-wide-leg-azul-sm.webp",
-  faldas: "/productos/falda-jean-correa-oscura-sm.webp",
-  vestidos: "/productos/vestido-midi-tropical-sm.webp",
-  tejidos: "/productos/chompa-calada-negra-sm.webp",
+// Cada foto aparece una sola vez en la portada: portada, categorías y novedades no se repiten.
+const HERO = ["blusa-guipur-camel", "vestido-midi-tropical", "blusa-romantica-perlas"];
+
+const catSlug: Record<string, string> = {
+  blusas: "blusa-lazo-amarilla",
+  blazers: "chaqueta-cierres-dorados",
+  conjuntos: "conjunto-tweed",
+  pantalones: "jean-flare-botones",
+  faldas: "falda-jean-correa-oscura",
+  vestidos: "vestido-camisero-correa",
+  tejidos: "polo-tejido-rayas",
 };
 
 export default function Home() {
-  const nuevos = PRODUCTS.filter((p) => p.isNew).slice(0, 8);
+  const used = new Set([...HERO, ...Object.values(catSlug)]);
+  const nuevos = PRODUCTS.filter((p) => p.isNew && !used.has(p.slug)).slice(0, 8);
   return (
     <>
       <section className="hero">
         <div className="hero-media">
-          <img src="/productos/conjunto-tweed.webp" alt="" width={900} height={1200} fetchPriority="high" />
-          <img src="/productos/blusa-guipur-camel.webp" alt="" width={900} height={1200} />
-          <img src="/productos/blusa-romantica-perlas.webp" alt="" width={900} height={1200} className="hide-sm" />
+          {HERO.map((slug, i) => (
+            <img key={slug} src={`/productos/${slug}.webp`} alt="" width={900} height={1200} fetchPriority={i === 0 ? "high" : "auto"} className={i === 2 ? "hide-sm" : undefined} />
+          ))}
         </div>
         <div className="hero-text">
           <p className="eyebrow">Nueva colección</p>
@@ -44,7 +48,7 @@ export default function Home() {
         <div className="cats">
           {CATEGORIES.map((c) => (
             <Link key={c.id} to={`/tienda?categoria=${c.id}`} className="cat">
-              <img src={catImage[c.id]} alt="" width={400} height={533} loading="lazy" />
+              <img src={`/productos/${catSlug[c.id]}-sm.webp`} alt="" width={400} height={533} loading="lazy" />
               <span>{c.label}</span>
             </Link>
           ))}

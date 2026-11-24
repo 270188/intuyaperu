@@ -104,7 +104,7 @@ main { min-height: 70vh; }
 .cat { position: relative; aspect-ratio: 3/4; overflow: hidden; background: var(--bg-2); }
 .cat img { width: 100%; height: 100%; object-fit: cover; transition: transform .8s; }
 .cat:hover img { transform: scale(1.05); }
-.cat span { position: absolute; left: 0; right: 0; bottom: 14px; text-align: center; text-transform: uppercase; letter-spacing: .2em; font-size: 12px; }
+.cat span { position: absolute; left: 0; right: 0; bottom: 0; padding: 10px 4px; background: color-mix(in srgb, var(--bg) 88%, transparent); text-align: center; text-transform: uppercase; letter-spacing: .2em; font-size: 12px; }
 .perks { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: var(--line); margin: 64px var(--pad) 0; border: 1px solid var(--line); }
 .perks div { background: var(--bg); padding: 28px; display: flex; flex-direction: column; gap: 4px; text-align: center; }
 .perks strong { font-weight: 400; text-transform: uppercase; letter-spacing: .12em; font-size: 12px; }

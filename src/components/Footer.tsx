@@ -27,7 +27,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <span>© {new Date().getFullYear()} {STORE.name}</span>
+        <span>© {new Date().getFullYear()} {STORE.brand}</span>
         <span>Pagos seguros · Visa · Mastercard · Amex · Diners · Yape · Plin</span>
       </div>
     </footer>
