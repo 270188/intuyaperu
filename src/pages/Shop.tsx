@@ -36,8 +36,15 @@ export default function Shop() {
   const title = get("q") ? `Resultados para “${get("q")}”` : cat ? cat.label : sp.get("nuevo") === "1" ? "Novedades" : "Toda la colección";
 
   useEffect(() => {
-    document.title = `${title} · MAISON INTI`;
-  }, [title]);
+    document.title = cat ? `${cat.label} para mujer en Lima | MAISON INTI` : `${title} | MAISON INTI`;
+    const d = document.head.querySelector<HTMLMetaElement>('meta[name="description"]');
+    if (d)
+      d.content = cat
+        ? `Compra ${cat.label.toLowerCase()} para mujer en Maison Inti: ${res.total} modelos elegantes. Envíos a todo el Perú. Paga con tarjeta, Yape o Plin.`
+        : `Descubre ${res.total} prendas para mujer en Maison Inti. Envíos a todo el Perú.`;
+    const c = document.head.querySelector<HTMLLinkElement>('link[rel="canonical"]');
+    if (c) c.href = `https://maisoninti.com.pe/tienda${cat ? `?categoria=${cat.id}` : ""}`;
+  }, [title, cat, res.total]);
 
   return (
     <div className="shop">

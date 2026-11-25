@@ -4,6 +4,7 @@ import ProductCard from "../components/ProductCard";
 import { useCart } from "../lib/cart";
 import { money, waLink } from "../lib/config";
 import { CATEGORIES, getProduct, PRODUCTS } from "../lib/products";
+import { clearProductSeo, productSeo } from "../lib/seo";
 import NotFound from "./NotFound";
 
 export default function ProductPage() {
@@ -16,7 +17,8 @@ export default function ProductPage() {
   useEffect(() => {
     setSize("");
     setMsg("");
-    if (p) document.title = `${p.name} · MAISON INTI`;
+    if (p) productSeo(p);
+    return clearProductSeo;
   }, [p]);
 
   if (!p) return <NotFound />;
