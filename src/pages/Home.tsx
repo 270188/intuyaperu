@@ -29,14 +29,14 @@ export default function Home() {
         <div className="hero-text">
           <p className="eyebrow">Nueva colección</p>
           <h1>Elegancia que se siente</h1>
-          <Link to="/tienda?nuevo=1" className="btn light">Descubrir</Link>
+          <Link to="/tienda" className="btn light">Ver colección</Link>
         </div>
       </section>
 
       <section className="section">
         <div className="section-head">
           <h2>Novedades</h2>
-          <Link to="/tienda?nuevo=1" className="link">Ver todo</Link>
+          <Link to="/tienda" className="link">Ver toda la colección</Link>
         </div>
         <div className="grid">
           {nuevos.map((p, i) => <ProductCard key={p.id} p={p} eager={i < 4} />)}

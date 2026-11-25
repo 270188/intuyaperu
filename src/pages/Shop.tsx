@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
-import { CATEGORIES, queryProducts, SIZE_ORDER } from "../lib/products";
+import { CATEGORIES, PRODUCTS, queryProducts, SIZE_ORDER } from "../lib/products";
 
 export default function Shop() {
   const [sp, setSp] = useSearchParams();
@@ -44,6 +44,7 @@ export default function Shop() {
       <div className="shop-head">
         <h1>{title}</h1>
         <span className="muted">{res.total} prendas</span>
+        {sp.toString() && <Link to="/tienda" className="link">Ver toda la colección ({PRODUCTS.length})</Link>}
       </div>
       <div className="chips" role="tablist">
         <button className={!cat ? "chip on" : "chip"} onClick={() => set("categoria", "")}>Todo</button>
