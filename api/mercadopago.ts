@@ -14,7 +14,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   const body = (typeof req.body === "string" ? safeJson(req.body) : req.body) ?? {};
-  const { orderId, zone, email, nombre, lines } = body as Record<string, unknown>;
+  const { orderId, zone, email, nombre, lines, cupon } = body as Record<string, unknown>;
+  const factor = cupon === "INTI10" ? 0.9 : 1; // promoción de apertura, 2da compra
 
   if (typeof orderId !== "string" || !/^IP-\d{6}-[A-Z0-9]{1,6}$/.test(orderId)) return bad(res, "Pedido inválido");
   if (typeof zone !== "string" || !SHIPPING_ZONES.some((z) => z.id === zone)) return bad(res, "Zona inválida");
@@ -28,8 +29,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     const stock = p?.sizes.find((s) => s.size === l?.size)?.stock ?? 0;
     const qty = Number(l?.qty);
     if (!p || !Number.isInteger(qty) || qty < 1 || qty > stock) return bad(res, "Una prenda ya no tiene stock suficiente. Actualiza tu bolsa.");
-    items.push({ id: `${p.id}-${l.size}`, title: `${p.name} · Talla ${l.size}`, quantity: qty, unit_price: p.price, currency_id: "PEN" });
-    subtotal += qty * p.price;
+    items.push({ id: `${p.id}-${l.size}`, title: `${p.name} · Talla ${l.size}`, quantity: qty, unit_price: Math.round(p.price * factor * 100) / 100, currency_id: "PEN" });
+    subtotal += qty * Math.round(p.price * factor * 100) / 100;
   }
   const envio = shippingCost(zone, subtotal) ?? 0;
   if (envio > 0) items.push({ id: "envio", title: "Envío", quantity: 1, unit_price: envio, currency_id: "PEN" });

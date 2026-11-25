@@ -20,7 +20,7 @@ export default function Header() {
 
   return (
     <>
-      <div className="topbar">Envío gratis en Lima desde S/ {FREE_SHIPPING_FROM} · Paga con tarjeta, Yape, Plin o transferencia</div>
+      <div className="topbar">Apertura: 10% de descuento en tu segunda compra · Envío gratis en Lima desde S/ {FREE_SHIPPING_FROM}</div>
       <header className="header">
         <button className="icon-btn menu-btn" aria-label="Abrir menú" aria-expanded={menu} onClick={() => setMenu(!menu)}>
           <span className={menu ? "burger open" : "burger"} />

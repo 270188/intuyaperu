@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../lib/cart";
-import { cardFee, money } from "../lib/config";
+import { cardFee, money, PROMO, promoDiscount } from "../lib/config";
 import { newOrderId, saveOrder, validators, type Buyer, type Order, type PayMethod } from "../lib/order";
 import { FREE_SHIPPING_FROM, SHIPPING_ZONES, shippingCost } from "../lib/shipping";
 
@@ -23,6 +23,9 @@ export default function Checkout() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [sending, setSending] = useState(false);
   const [fail, setFail] = useState("");
+  const [cupon, setCupon] = useState("");
+  const [cuponOk, setCuponOk] = useState(false);
+  const [cuponMsg, setCuponMsg] = useState("");
 
   if (items.length === 0)
     return (
@@ -32,9 +35,21 @@ export default function Checkout() {
       </div>
     );
 
-  const envio = b.zona ? shippingCost(b.zona, subtotal) ?? 0 : 0;
-  const comision = metodo === "tarjeta" ? cardFee(subtotal + envio) : 0;
-  const total = subtotal + envio + comision;
+  const descuento = cuponOk ? promoDiscount(subtotal) : 0;
+  const neto = subtotal - descuento;
+  const envio = b.zona ? shippingCost(b.zona, neto) ?? 0 : 0;
+  const comision = metodo === "tarjeta" ? cardFee(neto + envio) : 0;
+  const total = neto + envio + comision;
+
+  function aplicarCupon() {
+    if (cupon.trim().toUpperCase() === PROMO.code) {
+      setCuponOk(true);
+      setCuponMsg(`¡Listo! ${PROMO.label} aplicado.`);
+    } else {
+      setCuponOk(false);
+      setCuponMsg("Ese código no es válido.");
+    }
+  }
   const upd = (k: keyof Buyer) => (e: { target: { value: string } }) => setB({ ...b, [k]: e.target.value });
 
   async function submit(e: FormEvent) {
@@ -58,6 +73,8 @@ export default function Checkout() {
       subtotal,
       envio,
       comision,
+      descuento,
+      cupon: cuponOk ? PROMO.code : undefined,
       total,
     };
     saveOrder(order);
@@ -73,6 +90,7 @@ export default function Checkout() {
             zone: b.zona,
             email: b.email.trim(),
             nombre: b.nombre.trim(),
+            cupon: cuponOk ? PROMO.code : undefined,
             lines: items.map((i) => ({ id: i.id, size: i.size, qty: i.qty })),
           }),
         });
@@ -127,6 +145,14 @@ export default function Checkout() {
         <label>Referencia (opcional)<input value={b.referencia} onChange={upd("referencia")} maxLength={160} /></label>
         <p className="muted small">Envío gratis en Lima y Callao desde {money(FREE_SHIPPING_FROM)}.</p>
 
+        <h2>Código de descuento</h2>
+        <div className="coupon">
+          <input value={cupon} onChange={(e) => { setCupon(e.target.value); setCuponOk(false); setCuponMsg(""); }} placeholder={`Ej. ${PROMO.code}`} aria-label="Código de descuento" maxLength={20} />
+          <button type="button" className="btn ghost" onClick={aplicarCupon}>Aplicar</button>
+        </div>
+        {cuponMsg && <p className={cuponOk ? "ok-msg" : "field-err"}>{cuponMsg}</p>}
+        <p className="muted small">Válido desde tu segunda compra. Verificamos tu compra anterior con tu DNI antes del envío.</p>
+
         <h2>Pago</h2>
         <div className="methods" role="radiogroup">
           {METHODS.map((m) => (
@@ -159,6 +185,7 @@ export default function Checkout() {
           ))}
         </ul>
         <div className="row"><span>Subtotal</span><span>{money(subtotal)}</span></div>
+        {descuento > 0 && <div className="row ok-msg"><span>Descuento {PROMO.code} (10%)</span><span>−{money(descuento)}</span></div>}
         <div className="row"><span>Envío</span><span>{b.zona ? (envio ? money(envio) : "Gratis") : "—"}</span></div>
         {comision > 0 && <div className="row"><span>Comisión pago con tarjeta (5%)</span><span>{money(comision)}</span></div>}
         <div className="row total"><span>Total</span><strong>{money(total)}</strong></div>

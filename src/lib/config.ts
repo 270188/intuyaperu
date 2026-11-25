@@ -20,6 +20,17 @@ export const PAYMENT_INFO = {
   ],
 };
 
+// Promoción de apertura: 10% en la segunda compra
+export const PROMO = {
+  code: "INTI10",
+  rate: 0.1,
+  label: "10% de descuento en tu segunda compra",
+};
+
+export function promoDiscount(subtotal: number) {
+  return Math.round(subtotal * PROMO.rate * 100) / 100;
+}
+
 export const CARD_FEE_RATE = 0.05; // comisión por pago con tarjeta
 
 export function cardFee(amount: number) {

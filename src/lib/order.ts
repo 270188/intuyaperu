@@ -19,6 +19,8 @@ export type Order = {
   subtotal: number;
   envio: number;
   comision?: number;
+  descuento?: number;
+  cupon?: string;
   total: number;
 };
 

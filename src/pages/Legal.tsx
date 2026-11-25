@@ -50,7 +50,7 @@ const PAGES: Record<string, { title: string; body: () => ReactNode }> = {
     title: "Términos y condiciones",
     body: () => (
       <>
-        <p>Al comprar en {STORE.name} aceptas estas condiciones. Los precios están en soles e incluyen IGV. Los pagos con tarjeta tienen un recargo del 5% de comisión, que se muestra antes de pagar. Las imágenes son referenciales; el color puede variar ligeramente según tu pantalla.</p>
+        <p>Al comprar en {STORE.name} aceptas estas condiciones. Los precios están en soles e incluyen IGV. Los pagos con tarjeta tienen un recargo del 5% de comisión, que se muestra antes de pagar. Promoción de apertura: 10% de descuento sobre el precio de las prendas (sin incluir envío) en la segunda compra, con el código INTI10; se verifica la compra anterior con el DNI del cliente antes del envío. Las imágenes son referenciales; el color puede variar ligeramente según tu pantalla.</p>
         <p>Los pedidos pagados con Yape, Plin o transferencia se reservan por 24 horas hasta recibir el comprobante. Pasado ese plazo, el pedido se anula.</p>
         <p>El stock se confirma al momento del pago. Si una prenda se agota, te ofreceremos un cambio o la devolución total del dinero.</p>
         <p>Para reclamos puedes usar nuestro <Link to="/libro-de-reclamaciones">Libro de Reclamaciones</Link>.</p>

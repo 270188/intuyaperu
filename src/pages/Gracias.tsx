@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Link, useSearchParams } from "react-router-dom";
 import { useCart } from "../lib/cart";
-import { money, PAYMENT_INFO, waLink } from "../lib/config";
+import { money, PAYMENT_INFO, waLink, PROMO } from "../lib/config";
 import { loadOrder } from "../lib/order";
 
 export default function Gracias() {
@@ -35,6 +35,7 @@ export default function Gracias() {
   const resumen = [
     `Hola Maison Inti 👋, acabo de hacer el pedido *${order.id}*`,
     ...order.lines.map((l) => `• ${l.name} · Talla ${l.size} · x${l.qty} · ${money(l.price * l.qty)}`),
+    order.descuento ? `Descuento ${order.cupon} (10%): −${money(order.descuento)} (verificar 2da compra)` : "",
     `Envío: ${order.envio ? money(order.envio) : "Gratis"}`,
     order.comision ? `Comisión tarjeta (5%): ${money(order.comision)}` : "",
     `*Total: ${money(order.total)}*`,
@@ -93,9 +94,15 @@ export default function Gracias() {
       <ul className="plain">
         {order.lines.map((l, i) => <li key={i}>{l.name} · Talla {l.size} · x{l.qty} — {money(l.price * l.qty)}</li>)}
       </ul>
+      {!!order.descuento && <div className="row"><span>Descuento {order.cupon} (10%)</span><span>−{money(order.descuento)}</span></div>}
       <div className="row"><span>Envío</span><span>{order.envio ? money(order.envio) : "Gratis"}</span></div>
       {!!order.comision && <div className="row"><span>Comisión pago con tarjeta (5%)</span><span>{money(order.comision)}</span></div>}
       <div className="row total"><span>Total</span><strong>{money(order.total)}</strong></div>
+      <div className="promo-box">
+        <p className="eyebrow">Regalo de apertura</p>
+        <h2>{PROMO.label}</h2>
+        <p>Usa el código <strong>{PROMO.code}</strong> en tu próxima compra.</p>
+      </div>
       <Link to="/tienda" className="btn ghost block">Seguir comprando</Link>
     </div>
   );

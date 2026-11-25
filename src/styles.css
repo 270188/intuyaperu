@@ -243,3 +243,10 @@ details p { color: var(--muted); font-size: 14px; }
 .qr { width: 220px; height: 220px; image-rendering: pixelated; background: #fff; padding: 10px; border: 1px solid var(--line); margin: 12px auto; }
 .qrs { display: flex; gap: 24px; flex-wrap: wrap; }
 .qrs figure { margin: 0; text-align: center; font-size: 12px; text-transform: uppercase; letter-spacing: .14em; }
+
+.coupon { display: flex; gap: 8px; }
+.coupon input { flex: 1; text-transform: uppercase; }
+.coupon .btn { padding: 12px 18px; }
+.ok-msg { color: #4f7a4a; font-size: 13px; }
+.promo-box { margin: 24px 0 8px; padding: 22px; text-align: center; border: 1px dashed var(--accent); }
+.promo-box h2 { margin: 6px 0; }
