@@ -15,6 +15,7 @@ export default function Footer() {
           <Link to="/legal/cambios">Cambios y devoluciones</Link>
           <Link to="/legal/pagos">Medios de pago</Link>
           <a href={waLink("Hola Maison Inti, tengo una consulta")} target="_blank" rel="noopener noreferrer">WhatsApp {STORE.whatsappDisplay}</a>
+          <a href={`mailto:${STORE.email}`}>{STORE.email}</a>
         </div>
         <div>
           <h4>Legal</h4>
@@ -27,7 +28,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="footer-bottom">
-        <span>© {new Date().getFullYear()} {STORE.brand}</span>
+        <span>© {new Date().getFullYear()} {STORE.brand} · {STORE.razonSocial} · {STORE.ruc}</span>
         <span>Pagos seguros · Visa · Mastercard · Amex · Diners · Yape · Plin</span>
       </div>
     </footer>

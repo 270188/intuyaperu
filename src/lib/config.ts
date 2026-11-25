@@ -1,13 +1,12 @@
 export const STORE = {
-  name: "intuyaperu.com",
+  name: "maisoninti.com.pe",
   brand: "MAISON INTI",
-  domain: "https://intuyaperu.com",
+  domain: "https://maisoninti.com.pe",
   whatsapp: "51990073634",
   whatsappDisplay: "990 073 634",
-  email: "hola@intuyaperu.com",
-  // Completa estos datos con la información real de tu negocio:
-  ruc: "RUC por completar",
-  razonSocial: "Razón social por completar",
+  email: "ventas@maisoninti.com.pe",
+  ruc: "RUC 10448163917",
+  razonSocial: "Angela Valeria Ruiz Leon",
   direccion: "Lima, Perú",
   currency: "PEN",
 };

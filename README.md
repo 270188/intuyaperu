@@ -1,4 +1,4 @@
-# MAISON INTI · intuyaperu.com
+# MAISON INTI · maisoninti.com.pe
 
 Tienda virtual de moda femenina hecha con **Vite + React + TypeScript**, lista para desplegar en Vercel.
 
@@ -15,7 +15,7 @@ Tienda virtual de moda femenina hecha con **Vite + React + TypeScript**, lista p
 ## Configurar
 1. Edita `src/lib/config.ts` con tu RUC, razón social, titular de Yape/Plin y cuentas bancarias.
 2. Edita precios, tallas y stock reales en `src/lib/products.ts`.
-3. En Vercel → Settings → Environment Variables agrega `MP_ACCESS_TOKEN` (tu Access Token de producción de Mercado Pago) y `SITE_URL=https://intuyaperu.com`.
+3. En Vercel → Settings → Environment Variables agrega `MP_ACCESS_TOKEN` (tu Access Token de producción de Mercado Pago) y `SITE_URL=https://maisoninti.com.pe`.
 
 ## Desarrollo
 ```bash
