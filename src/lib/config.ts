@@ -15,6 +15,7 @@ export const STORE = {
 export const PAYMENT_INFO = {
   yapePlin: { numero: "990 073 634", titular: "Angela Valeria Ruiz Leon" },
   qr: { yape: "/pagos/yape-qr.png", plin: "/pagos/plin-qr.png" },
+  mercadoPagoLink: "https://link.mercadopago.com.pe/maisoninti",
   transferencia: [
     { banco: "Interbank · Cuenta Simple Soles", cuenta: "284 3196415446", cci: "00328401319641544675" },
   ],

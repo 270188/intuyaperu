@@ -79,6 +79,12 @@ export default function Checkout() {
           window.location.href = data.url;
           return;
         }
+        if (r.status === 503) {
+          // Sin integración automática: se paga con el link de Mercado Pago de la tienda.
+          clear();
+          nav("/gracias");
+          return;
+        }
         setFail(data.error || "No pudimos iniciar el pago con tarjeta. Intenta con Yape, Plin o transferencia.");
       } catch {
         setFail("Problema de conexión. Revisa tu internet e inténtalo otra vez.");

@@ -34,6 +34,7 @@ const PAGES: Record<string, { title: string; body: () => ReactNode }> = {
     body: () => (
       <>
         <p><strong>Tarjetas de crédito y débito</strong> (Visa, Mastercard, American Express, Diners) a través de Mercado Pago. Tus datos de tarjeta los procesa Mercado Pago; nosotros nunca los vemos ni los guardamos.</p>
+        <p><a className="btn" href={PAYMENT_INFO.mercadoPagoLink} target="_blank" rel="noopener noreferrer">Pagar con Mercado Pago</a></p>
         <p><strong>Yape y Plin</strong> al {PAYMENT_INFO.yapePlin.numero}, a nombre de {PAYMENT_INFO.yapePlin.titular}. Envíanos la captura por WhatsApp.</p>
         <div className="qrs">
           <figure><img className="qr" src={PAYMENT_INFO.qr.yape} alt="Código QR de Yape" width={200} height={200} loading="lazy" /><figcaption>Yape</figcaption></figure>

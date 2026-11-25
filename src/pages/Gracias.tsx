@@ -40,7 +40,7 @@ export default function Gracias() {
     `Pago: ${order.metodo}`,
     `Nombre: ${order.buyer.nombre} · DNI/CE: ${order.buyer.documento}`,
     `Dirección: ${order.buyer.direccion}${order.buyer.referencia ? ` (${order.buyer.referencia})` : ""}`,
-    order.metodo === "tarjeta" ? "" : "Adjunto mi comprobante de pago.",
+    "Adjunto mi comprobante de pago.",
   ].filter(Boolean).join("\n");
 
   const pagado = order.metodo === "tarjeta" && mp === "success";
@@ -49,6 +49,15 @@ export default function Gracias() {
     <div className="page narrow">
       <p className="eyebrow">Pedido {order.id}</p>
       <h1>{pagado ? "¡Pago aprobado, gracias!" : mp === "pending" ? "Tu pago está en proceso" : "¡Pedido recibido!"}</h1>
+
+      {order.metodo === "tarjeta" && !mp && (
+        <div className="pay-box">
+          <h2>Último paso: paga {money(order.total)} con tarjeta</h2>
+          <p>Toca el botón, escribe el monto exacto de <strong>{money(order.total)}</strong>, elige tu tarjeta (Visa, Mastercard, American Express o Diners) y ¡listo!</p>
+          <a className="btn block" href={PAYMENT_INFO.mercadoPagoLink} target="_blank" rel="noopener noreferrer">Pagar con Mercado Pago</a>
+          <p className="muted">Luego envíanos la captura del pago por WhatsApp con tu número de pedido. Reservamos tus prendas por 24 horas.</p>
+        </div>
+      )}
 
       {order.metodo !== "tarjeta" && (
         <div className="pay-box">
@@ -76,7 +85,7 @@ export default function Gracias() {
       )}
 
       <a className="btn block" href={waLink(resumen)} target="_blank" rel="noopener noreferrer">
-        {order.metodo === "tarjeta" ? "Confirmar pedido por WhatsApp" : "Enviar comprobante por WhatsApp"}
+        {pagado ? "Confirmar pedido por WhatsApp" : "Enviar comprobante por WhatsApp"}
       </a>
 
       <h2>Resumen</h2>
