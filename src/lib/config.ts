@@ -13,11 +13,10 @@ export const STORE = {
 };
 
 export const PAYMENT_INFO = {
-  // Reemplaza con tus datos reales antes de vender:
-  yapePlin: { numero: "990 073 634", titular: "Titular por completar" },
+  yapePlin: { numero: "990 073 634", titular: "Angela Valeria Ruiz Leon" },
+  qr: { yape: "/pagos/yape-qr.png", plin: "/pagos/plin-qr.png" },
   transferencia: [
-    { banco: "BCP", cuenta: "Cuenta por completar", cci: "CCI por completar" },
-    { banco: "Interbank", cuenta: "Cuenta por completar", cci: "CCI por completar" },
+    { banco: "Interbank · Cuenta Simple Soles", cuenta: "284 3196415446", cci: "00328401319641544675" },
   ],
 };
 

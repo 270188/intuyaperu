@@ -54,12 +54,20 @@ export default function Gracias() {
         <div className="pay-box">
           <h2>Último paso: realiza tu pago de {money(order.total)}</h2>
           {(order.metodo === "yape" || order.metodo === "plin") && (
-            <p>Envía el pago por <strong>{order.metodo === "yape" ? "Yape" : "Plin"}</strong> al <strong>{PAYMENT_INFO.yapePlin.numero}</strong> ({PAYMENT_INFO.yapePlin.titular}).</p>
+            <>
+              <p>Escanea el QR o envía el pago por <strong>{order.metodo === "yape" ? "Yape" : "Plin"}</strong> al <strong>{PAYMENT_INFO.yapePlin.numero}</strong>, a nombre de <strong>{PAYMENT_INFO.yapePlin.titular}</strong>.</p>
+              <img className="qr" src={order.metodo === "yape" ? PAYMENT_INFO.qr.yape : PAYMENT_INFO.qr.plin} alt={`Código QR de ${order.metodo === "yape" ? "Yape" : "Plin"}`} width={240} height={240} />
+            </>
           )}
           {order.metodo === "transferencia" && (
-            <ul>
+            <ul className="plain">
               {PAYMENT_INFO.transferencia.map((t) => (
-                <li key={t.banco}><strong>{t.banco}</strong>: {t.cuenta} · CCI {t.cci}</li>
+                <li key={t.banco}>
+                  <strong>{t.banco}</strong><br />
+                  Cuenta: {t.cuenta}<br />
+                  CCI: {t.cci}<br />
+                  Titular: {PAYMENT_INFO.yapePlin.titular}
+                </li>
               ))}
             </ul>
           )}

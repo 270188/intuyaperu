@@ -240,3 +240,6 @@ details p { color: var(--muted); font-size: 14px; }
 }
 @media (prefers-reduced-motion: reduce) { * { transition: none !important; } }
 @media print { .header, .topbar, .footer, .wa-float, .btn, .link { display: none !important; } }
+.qr { width: 220px; height: 220px; image-rendering: pixelated; background: #fff; padding: 10px; border: 1px solid var(--line); margin: 12px auto; }
+.qrs { display: flex; gap: 24px; flex-wrap: wrap; }
+.qrs figure { margin: 0; text-align: center; font-size: 12px; text-transform: uppercase; letter-spacing: .14em; }
