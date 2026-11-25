@@ -18,6 +18,7 @@ export type Order = {
   lines: { name: string; size: string; qty: number; price: number }[];
   subtotal: number;
   envio: number;
+  comision?: number;
   total: number;
 };
 

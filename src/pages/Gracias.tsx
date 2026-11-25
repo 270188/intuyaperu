@@ -36,6 +36,7 @@ export default function Gracias() {
     `Hola Maison Inti 👋, acabo de hacer el pedido *${order.id}*`,
     ...order.lines.map((l) => `• ${l.name} · Talla ${l.size} · x${l.qty} · ${money(l.price * l.qty)}`),
     `Envío: ${order.envio ? money(order.envio) : "Gratis"}`,
+    order.comision ? `Comisión tarjeta (5%): ${money(order.comision)}` : "",
     `*Total: ${money(order.total)}*`,
     `Pago: ${order.metodo}`,
     `Nombre: ${order.buyer.nombre} · DNI/CE: ${order.buyer.documento}`,
@@ -53,7 +54,7 @@ export default function Gracias() {
       {order.metodo === "tarjeta" && !mp && (
         <div className="pay-box">
           <h2>Último paso: paga {money(order.total)} con tarjeta</h2>
-          <p>Toca el botón, escribe el monto exacto de <strong>{money(order.total)}</strong>, elige tu tarjeta (Visa, Mastercard, American Express o Diners) y ¡listo!</p>
+          <p>Toca el botón, escribe el monto exacto de <strong>{money(order.total)}</strong>, ya incluye el 5% de comisión por pago con tarjeta, elige tu tarjeta (Visa, Mastercard, American Express o Diners) y ¡listo!</p>
           <a className="btn block" href={PAYMENT_INFO.mercadoPagoLink} target="_blank" rel="noopener noreferrer">Pagar con Mercado Pago</a>
           <p className="muted">Luego envíanos la captura del pago por WhatsApp con tu número de pedido. Reservamos tus prendas por 24 horas.</p>
         </div>
@@ -93,6 +94,7 @@ export default function Gracias() {
         {order.lines.map((l, i) => <li key={i}>{l.name} · Talla {l.size} · x{l.qty} — {money(l.price * l.qty)}</li>)}
       </ul>
       <div className="row"><span>Envío</span><span>{order.envio ? money(order.envio) : "Gratis"}</span></div>
+      {!!order.comision && <div className="row"><span>Comisión pago con tarjeta (5%)</span><span>{money(order.comision)}</span></div>}
       <div className="row total"><span>Total</span><strong>{money(order.total)}</strong></div>
       <Link to="/tienda" className="btn ghost block">Seguir comprando</Link>
     </div>

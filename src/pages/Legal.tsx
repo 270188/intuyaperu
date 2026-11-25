@@ -33,7 +33,7 @@ const PAGES: Record<string, { title: string; body: () => ReactNode }> = {
     title: "Medios de pago",
     body: () => (
       <>
-        <p><strong>Tarjetas de crédito y débito</strong> (Visa, Mastercard, American Express, Diners) a través de Mercado Pago. Tus datos de tarjeta los procesa Mercado Pago; nosotros nunca los vemos ni los guardamos.</p>
+        <p><strong>Tarjetas de crédito y débito</strong> (Visa, Mastercard, American Express, Diners) a través de Mercado Pago. Tus datos de tarjeta los procesa Mercado Pago; nosotros nunca los vemos ni los guardamos. <strong>Los pagos con tarjeta tienen un recargo del 5% de comisión</strong>, que se muestra en el resumen antes de pagar. Con Yape, Plin o transferencia no hay recargo.</p>
         <p><a className="btn" href={PAYMENT_INFO.mercadoPagoLink} target="_blank" rel="noopener noreferrer">Pagar con Mercado Pago</a></p>
         <p><strong>Yape y Plin</strong> al {PAYMENT_INFO.yapePlin.numero}, a nombre de {PAYMENT_INFO.yapePlin.titular}. Envíanos la captura por WhatsApp.</p>
         <div className="qrs">
@@ -50,7 +50,7 @@ const PAGES: Record<string, { title: string; body: () => ReactNode }> = {
     title: "Términos y condiciones",
     body: () => (
       <>
-        <p>Al comprar en {STORE.name} aceptas estas condiciones. Los precios están en soles e incluyen IGV. Las imágenes son referenciales; el color puede variar ligeramente según tu pantalla.</p>
+        <p>Al comprar en {STORE.name} aceptas estas condiciones. Los precios están en soles e incluyen IGV. Los pagos con tarjeta tienen un recargo del 5% de comisión, que se muestra antes de pagar. Las imágenes son referenciales; el color puede variar ligeramente según tu pantalla.</p>
         <p>Los pedidos pagados con Yape, Plin o transferencia se reservan por 24 horas hasta recibir el comprobante. Pasado ese plazo, el pedido se anula.</p>
         <p>El stock se confirma al momento del pago. Si una prenda se agota, te ofreceremos un cambio o la devolución total del dinero.</p>
         <p>Para reclamos puedes usar nuestro <Link to="/libro-de-reclamaciones">Libro de Reclamaciones</Link>.</p>

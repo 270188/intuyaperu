@@ -20,6 +20,12 @@ export const PAYMENT_INFO = {
   ],
 };
 
+export const CARD_FEE_RATE = 0.05; // comisión por pago con tarjeta
+
+export function cardFee(amount: number) {
+  return Math.round(amount * CARD_FEE_RATE * 100) / 100;
+}
+
 export function waLink(text: string) {
   return `https://wa.me/${STORE.whatsapp}?text=${encodeURIComponent(text)}`;
 }

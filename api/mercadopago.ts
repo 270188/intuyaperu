@@ -33,6 +33,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
   const envio = shippingCost(zone, subtotal) ?? 0;
   if (envio > 0) items.push({ id: "envio", title: "Envío", quantity: 1, unit_price: envio, currency_id: "PEN" });
+  const comision = Math.round((subtotal + envio) * 0.05 * 100) / 100;
+  items.push({ id: "comision", title: "Comisión pago con tarjeta (5%)", quantity: 1, unit_price: comision, currency_id: "PEN" });
 
   const site = process.env.SITE_URL || (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "https://maisoninti.com.pe");
 

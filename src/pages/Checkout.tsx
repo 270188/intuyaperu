@@ -1,12 +1,12 @@
 import { useState, type FormEvent } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useCart } from "../lib/cart";
-import { money } from "../lib/config";
+import { cardFee, money } from "../lib/config";
 import { newOrderId, saveOrder, validators, type Buyer, type Order, type PayMethod } from "../lib/order";
 import { FREE_SHIPPING_FROM, SHIPPING_ZONES, shippingCost } from "../lib/shipping";
 
 const METHODS: { id: PayMethod; label: string; desc: string }[] = [
-  { id: "tarjeta", label: "Tarjeta de crédito o débito", desc: "Visa, Mastercard, American Express, Diners. Pago seguro con Mercado Pago." },
+  { id: "tarjeta", label: "Tarjeta de crédito o débito", desc: "Visa, Mastercard, American Express, Diners con Mercado Pago. Incluye 5% de comisión." },
   { id: "yape", label: "Yape", desc: "Yapea y envíanos la captura por WhatsApp." },
   { id: "plin", label: "Plin", desc: "Paga con Plin y envíanos la captura por WhatsApp." },
   { id: "transferencia", label: "Transferencia bancaria", desc: "BCP o Interbank. Envíanos la constancia por WhatsApp." },
@@ -33,7 +33,8 @@ export default function Checkout() {
     );
 
   const envio = b.zona ? shippingCost(b.zona, subtotal) ?? 0 : 0;
-  const total = subtotal + envio;
+  const comision = metodo === "tarjeta" ? cardFee(subtotal + envio) : 0;
+  const total = subtotal + envio + comision;
   const upd = (k: keyof Buyer) => (e: { target: { value: string } }) => setB({ ...b, [k]: e.target.value });
 
   async function submit(e: FormEvent) {
@@ -56,6 +57,7 @@ export default function Checkout() {
       lines: items.map((i) => ({ name: i.product.name, size: i.size, qty: i.qty, price: i.product.price })),
       subtotal,
       envio,
+      comision,
       total,
     };
     saveOrder(order);
@@ -158,6 +160,7 @@ export default function Checkout() {
         </ul>
         <div className="row"><span>Subtotal</span><span>{money(subtotal)}</span></div>
         <div className="row"><span>Envío</span><span>{b.zona ? (envio ? money(envio) : "Gratis") : "—"}</span></div>
+        {comision > 0 && <div className="row"><span>Comisión pago con tarjeta (5%)</span><span>{money(comision)}</span></div>}
         <div className="row total"><span>Total</span><strong>{money(total)}</strong></div>
       </aside>
     </div>
